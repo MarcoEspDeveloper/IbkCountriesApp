@@ -19,6 +19,7 @@ struct CountryModel: Codable {
     var status: String?
     var unMember: Bool?
     var currencies: [String: CountryCurrencies]?
+    var idd: CountryIdd?
     var capital: [String]?
     var altSpellings: [String]?
     var region: String?
