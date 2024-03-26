@@ -9,6 +9,6 @@ import Foundation
 
 protocol CountriesViewProtocol: AnyObject {
     
-    func showBasicAlert(title:String?, message: String?)
+    func showBasicAlert(title: String, message: String)
     func showCountryList()
 }

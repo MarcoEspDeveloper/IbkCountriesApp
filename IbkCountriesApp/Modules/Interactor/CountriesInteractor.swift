@@ -33,4 +33,20 @@ class CountriesInteractor: CountriesInteractorProtocol {
             }
         }
     }
+    
+    func getCountryListByName(name: String) {
+        
+        self.repository?.getCountryListByName(name: name) { (response, error) in
+            
+            if let countriesResponse = response {
+                
+                self.presenter?.didGetCountryListByName(countryList: countriesResponse)
+            }
+            
+            if let error = error {
+                
+                self.presenter?.failGetCountryListByName(error: error as! ErrorModel)
+            }
+        }
+    }
 }

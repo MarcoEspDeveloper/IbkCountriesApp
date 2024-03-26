@@ -33,6 +33,7 @@ class CountriesViewController: UIViewController {
     }
 }
 
+// MARK: - Methods
 extension CountriesViewController {
     
     func setupView() {
@@ -54,11 +55,41 @@ extension CountriesViewController {
     }
 }
 
+// MARK: - SearchBar Delegate
 extension CountriesViewController: UISearchBarDelegate {
     
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        if searchText.count > 0 {
+            
+            self.presenter?.getCountryListByName(name: searchText.folding(options: [.caseInsensitive, .diacriticInsensitive], locale: .current))
+        } else {
+            
+            self.presenter?.getCountryList()
+        }
+        
+        self.isSearching = true
+    }
     
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        
+        self.countriesSearchBar.endEditing(true)
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        
+        self.isSearching = searchBar.text != nil && searchBar.text!.count > 0 ? true : false
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        
+        searchBar.resignFirstResponder()
+        self.countriesSearchBar.endEditing(true)
+        self.isSearching = false
+    }
 }
 
+// MARK: - TableView Delegate
 extension CountriesViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -95,15 +126,16 @@ extension CountriesViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
+// MARK: - View Protocol Implementation
 extension CountriesViewController: CountriesViewProtocol {
     
-    func showBasicAlert(title: String?, message: String?) {
+    func showBasicAlert(title: String, message: String) {
         
         DispatchQueue.main.async {
             MBProgressHUD.hide(for: self.view, animated: true)
         }
         
-        self.presenter?.goToErrorPopUp(title: title ?? "", message: message ?? "")
+        self.presenter?.goToErrorPopUp(title: title, message: message)
     }
     
     func showCountryList() {

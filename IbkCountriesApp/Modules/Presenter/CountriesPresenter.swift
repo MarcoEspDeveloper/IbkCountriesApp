@@ -14,7 +14,6 @@ class CountriesPresenter: CountriesPresenterProtocol {
     var router: CountriesRouterProtocol?
     
     var countryList: [CountryModel] = []
-    var searchCountryList: [CountryModel] = []
     
     init(view: CountriesViewProtocol) {
         self.countriesView = view
@@ -27,6 +26,11 @@ class CountriesPresenter: CountriesPresenterProtocol {
         self.interactor?.getCountryList()
     }
     
+    func getCountryListByName(name: String) {
+        
+        self.interactor?.getCountryListByName(name: name.folding(options: [.caseInsensitive, .diacriticInsensitive], locale: .current))
+    }
+    
     func didGetCountryList(countryList: [CountryModel]) {
         
         self.countryList = countryList
@@ -36,31 +40,38 @@ class CountriesPresenter: CountriesPresenterProtocol {
     
     func failGetCountryList(error: ErrorModel) {
         
-        self.countriesView.showBasicAlert(title: NSLocalizedString("ERROR_TITLE", comment: ""), message: error.description)
+        let errorMessage = error.description ?? ""
+        
+        self.countriesView.showBasicAlert(title: NSLocalizedString("ERROR_TITLE", comment: ""), message: errorMessage)
+    }
+    
+    func didGetCountryListByName(countryList: [CountryModel]) {
+        
+        self.countryList = countryList
+        
+        self.countriesView.showCountryList()
+    }
+    
+    func failGetCountryListByName(error: ErrorModel) {
+        
+        let errorMessage = error.description ?? ""
+        
+        self.countriesView.showBasicAlert(title: NSLocalizedString("ERROR_TITLE", comment: ""), message: errorMessage)
     }
     
     func getCountries() -> [CountryModel] {
         return self.countryList
     }
     
-    func getSearchedCountries() -> [CountryModel] {
-        return self.searchCountryList
-    }
-    
-    func setSearchedCountries(movies: [CountryModel]) {
-        
-    }
-    
-    func clearSearchedCountries() {
-        
-    }
-    
     func goToDetail(movie: CountryModel) {
         
     }
     
-    func goToErrorPopUp(title: String, message: String) {
+    func goToErrorPopUp(title: String?, message: String?) {
         
-        self.router?.showErrorPopUp(title: title, message: message)
+        let errorTitle = title ?? ""
+        let errorMessage = message ?? ""
+        
+        self.router?.showErrorPopUp(title: errorTitle, message: errorMessage)
     }
 }

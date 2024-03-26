@@ -10,14 +10,14 @@ import Foundation
 protocol CountriesPresenterProtocol {
     
     func getCountryList()
+    func getCountryListByName(name: String)
     func didGetCountryList(countryList: [CountryModel])
     func failGetCountryList(error: ErrorModel)
+    func didGetCountryListByName(countryList: [CountryModel])
+    func failGetCountryListByName(error: ErrorModel)
     
     func getCountries() -> [CountryModel]
-    func getSearchedCountries() -> [CountryModel]
-    func setSearchedCountries(movies: [CountryModel])
-    func clearSearchedCountries()
     
     func goToDetail(movie: CountryModel)
-    func goToErrorPopUp(title: String, message: String)
+    func goToErrorPopUp(title: String?, message: String?)
 }

@@ -10,4 +10,5 @@ import Foundation
 protocol CountriesRepositoryProtocol {
     
     func getCountryList(completion: @escaping ([CountryModel]?, Error?) -> Void)
+    func getCountryListByName(name: String, completion: @escaping ([CountryModel]?, Error?) -> Void)
 }
