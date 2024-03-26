@@ -27,6 +27,7 @@ struct CountryModel: Codable {
     var languages: [String: String]?
     var translations: [String: CountryTranslationName]?
     var latlng: [Float]?
+    var landlocked: Bool?
     var borders: [String]?
     var area: Float?
     var demonyms: [String: CountryDemonyms]?
