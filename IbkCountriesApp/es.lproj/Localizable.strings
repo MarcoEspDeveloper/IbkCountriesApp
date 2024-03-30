@@ -10,3 +10,6 @@
 "INTERNET_ERROR_MESSAGE" = "No hay conexión a internet.";
 "GENERAL_ERROR_MESSAGE" = "Hubo un error desconocido.";
 "ERROR_TITLE" = "Error";
+
+// Home labels
+"HOME_TITLE_COUNTRIES" = "Países";

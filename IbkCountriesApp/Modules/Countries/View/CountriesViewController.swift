@@ -8,7 +8,7 @@
 import UIKit
 import MBProgressHUD
 
-class CountriesViewController: UIViewController {
+class CountriesViewController: BaseViewController {
 
     @IBOutlet weak var countriesSearchBar: UISearchBar!
     @IBOutlet weak var countriesTableView: UITableView!
@@ -37,6 +37,9 @@ class CountriesViewController: UIViewController {
 extension CountriesViewController {
     
     func setupView() {
+        
+        self.setupNavigationBar()
+        self.setupTitle(titleText: NSLocalizedString("HOME_TITLE_COUNTRIES", comment: ""))
         
         let countriesSearchToolBar = UIToolbar()
         let doneBtn = UIBarButtonItem(title: "Listo", style: .plain, target: self, action: #selector(handleViewTap))
@@ -119,6 +122,17 @@ extension CountriesViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         return UITableViewCell(frame: .zero)
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        DispatchQueue.main.async {
+            
+            if let country = self.presenter?.getCountries()[indexPath.row] {
+                
+                self.presenter?.goToDetail(country: country)
+            }
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

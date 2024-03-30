@@ -18,6 +18,6 @@ protocol CountriesPresenterProtocol {
     
     func getCountries() -> [CountryModel]
     
-    func goToDetail(movie: CountryModel)
+    func goToDetail(country: CountryModel)
     func goToErrorPopUp(title: String?, message: String?)
 }
