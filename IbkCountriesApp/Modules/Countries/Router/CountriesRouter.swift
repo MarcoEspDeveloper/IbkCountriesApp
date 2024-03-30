@@ -21,6 +21,8 @@ extension CountriesRouter: CountriesRouterProtocol {
     
     func goToDetail(country: CountryModel) {
         
+        let detailCountryVC = CountriesAssembly.detailBuild(country: country)
+        (self.countriesView as! CountriesViewController).navigationController?.pushViewController(detailCountryVC, animated: true)
     }
     
     func showErrorPopUp(title: String, message: String) {

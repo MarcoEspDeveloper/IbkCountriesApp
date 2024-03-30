@@ -63,8 +63,9 @@ class CountriesPresenter: CountriesPresenterProtocol {
         return self.countryList
     }
     
-    func goToDetail(movie: CountryModel) {
+    func goToDetail(country: CountryModel) {
         
+        self.router?.goToDetail(country: country)
     }
     
     func goToErrorPopUp(title: String?, message: String?) {

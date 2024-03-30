@@ -10,3 +10,6 @@
 "INTERNET_ERROR_MESSAGE" = "No internet connection.";
 "GENERAL_ERROR_MESSAGE" = "Unknow error.";
 "ERROR_TITLE" = "Error";
+
+// Home labels
+"HOME_TITLE_COUNTRIES" = "Countries";
