@@ -1,0 +1,15 @@
+/* 
+  Localizable.strings
+  IbkCountriesApp
+
+  Created by Marco Antonio  on 25/03/2024.
+  
+*/
+
+// Error messages
+"INTERNET_ERROR_MESSAGE" = "No internet connection.";
+"GENERAL_ERROR_MESSAGE" = "Unknow error.";
+"ERROR_TITLE" = "Error";
+
+// Home labels
+"HOME_TITLE_COUNTRIES" = "Countries";
